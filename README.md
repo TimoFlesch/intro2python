@@ -1,8 +1,7 @@
 # intro2python
-**!!!!!This is work in progress and not all sections have been implemented!!!!**  
+
 
 A brief intro to Python, designed for 2nd year students in Experimental Psychology and Psychology/Philosophy/Linguistics at the University of Oxford with only little coding experience.
-Authors: Timo Flesch, Mirta Stantic  
 
 "This course will introduce you to Python programming and will assume no previous knowledge of other programming languages. We’ll skip the basics of setting up the programming environment to teach you how to assign values to variables, manipulate data formats and data sets, use basic scientific visualizations and basic statistics. We’ll introduce you to loops, conditionals and functions and discuss some of the most important libraries in the scientist’s toolkit.  
 
