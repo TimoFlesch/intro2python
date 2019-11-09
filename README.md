@@ -1,4 +1,4 @@
-# intro2python
+# A brief (2h) introduction to programming in Python for absolute beginners
 
 
 A brief intro to Python, designed for 2nd year undergraduate students in Experimental Psychology and Biomedical Sciences at the University of Oxford. The course was developed and delivered by Mirta Stantic and Timo Flesch.  
