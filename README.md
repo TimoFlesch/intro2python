@@ -1,7 +1,7 @@
 # intro2python
 
 
-A brief intro to Python, designed for 2nd year undergraduate students in Experimental Psychology and Biomedical Sciences at the University of Oxford, designed by Mirta Stantic and Timo Flesch.  
+A brief intro to Python, designed for 2nd year undergraduate students in Experimental Psychology and Biomedical Sciences at the University of Oxford. The course was developed and delivered by Mirta Stantic and Timo Flesch.  
 
 "This course will introduce you to Python programming and will assume no previous knowledge of other programming languages. We’ll skip the basics of setting up the programming environment to teach you how to assign values to variables, manipulate data formats and data sets, use basic scientific visualizations and basic statistics. We’ll introduce you to loops, conditionals and functions and discuss some of the most important libraries in the scientist’s toolkit.  
 
