@@ -1,0 +1,1824 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{intro\_to\_python\_students\_with\_solutions}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \section{\texorpdfstring{\textbf{PART 1: PYTHON - A (VERY) SHORT
+INTRODUCTION}}{PART 1: PYTHON - A (VERY) SHORT INTRODUCTION}}\label{part-1-python---a-very-short-introduction}
+
+    Today you'll learn the basics of programming in Python. We use a
+so-called \emph{Python notebook}. the notebook consists of two types of
+cells, those that contain text, like the one you're reading right now,
+and those that contain python code.\\
+Below is an example of a cell with Python code. When we click on a cell
+with code and either press {[}SHIFT{]} + {[}ENTER{]} or click on the
+(RUN) button above, we tell the computer to interpret the commands which
+means that it turns the Python code into actions we want it to execute.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} \PY{c+c1}{\PYZsh{} this is a comment. Everything preceeded by a hash symbol (\PYZsh{}) is ignored by the}
+        \PY{c+c1}{\PYZsh{} computer. This allows you to add comments/notes/documentation to your python programme.}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{hello world}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+hello world
+
+    \end{Verbatim}
+
+    As you can see, we instructed the computer to "print" a string of
+letters. Don't worry too much about the syntax right now, later we'll go
+through this step by step!
+
+    \subsection{\texorpdfstring{\textbf{1.1
+VARIABLES}}{1.1 VARIABLES}}\label{variables}
+
+    Variables are used to store information that can later be referenced and
+manipulated by your computer program. It's helpful to think of variables
+as containers for information. For example, imagine you build a drawer
+and put socks in it. In this case, the drawer would be a variable and
+the socks we put in would correspond to its value(s). When you reference
+the variable, i.e. open the drawer, you'll find socks in there.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} \PY{c+c1}{\PYZsh{} let\PYZsq{}s create a drawer with socks}
+        \PY{n}{drawer} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{socks}\PY{l+s+s2}{\PYZdq{}}
+        
+        \PY{c+c1}{\PYZsh{} let\PYZsq{}s have a look what\PYZsq{}s inside the drawer}
+        \PY{n}{drawer}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}3}]:} 'socks'
+\end{Verbatim}
+            
+    \subsubsection{\texorpdfstring{\textbf{1.1.1 Assign Values to
+Variables}}{1.1.1 Assign Values to Variables}}\label{assign-values-to-variables}
+
+    Variables would be useless if you couldn't assign values to them. Python
+is able to handle all sorts of different datatypes, such as numbers,
+strings (=sequences of letters and symbols) and lists of
+numbers/letters. Below are a few examples
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}11}]:} \PY{c+c1}{\PYZsh{} this is an integer (a number without any decimal points)}
+         \PY{n}{variable1} \PY{o}{=} \PY{l+m+mi}{5} 
+         \PY{c+c1}{\PYZsh{} this is another integer}
+         \PY{n}{variable2} \PY{o}{=} \PY{l+m+mi}{7}
+         \PY{c+c1}{\PYZsh{} this is a float (a number with decimal points)}
+         \PY{n}{variable3} \PY{o}{=} \PY{o}{\PYZhy{}}\PY{l+m+mf}{2.563}
+         \PY{c+c1}{\PYZsh{} this is a string (a sequences of characters)}
+         \PY{n}{variable4} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Hello World}\PY{l+s+s1}{\PYZsq{}}
+         \PY{c+c1}{\PYZsh{} this is a list (a set of different items)}
+         \PY{n}{variable5} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Tomato}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{???}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+\end{Verbatim}
+
+
+    Let's check out what's inside these variables
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}7}]:} \PY{n}{variable5}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}7}]:} [1, 2, 'Tomato', 0, '???']
+\end{Verbatim}
+            
+    \textbf{Important!!} Variable names are somewhat arbitrary. But try to
+give your variables sensible names that explain what kind of information
+they hold (remember the drawer example above). This prevents a lot of
+confusion when you come back to code you've written weeks/months ago!
+
+    \subsubsection{\texorpdfstring{\textbf{1.1.2 Operations using defined
+variables}}{1.1.2 Operations using defined variables}}\label{operations-using-defined-variables}
+
+    What makes programming languages so powerful is their ability to perform
+various operations on the variables you have defined. In this section,
+you'll learn a few of those!
+
+    \paragraph{\texorpdfstring{\textbf{Basic addition \&
+subtraction}}{Basic addition \& subtraction}}\label{basic-addition-subtraction}
+
+    Let's write a program that adds two of the variables we have defined
+above:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}8}]:} \PY{n}{variable1} \PY{o}{+} \PY{n}{variable2} 
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}8}]:} 12
+\end{Verbatim}
+            
+    You can conduct basic math directly in-line, but if you need more than
+one operation to run, you'll want to assign them to variables:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}9}]:} \PY{n}{sum\PYZus{}of\PYZus{}two} \PY{o}{=} \PY{n}{variable1} \PY{o}{+} \PY{n}{variable2}
+        \PY{n}{difference} \PY{o}{=} \PY{n}{variable1} \PY{o}{\PYZhy{}} \PY{n}{variable2}
+        \PY{n}{difference2} \PY{o}{=} \PY{n}{difference} \PY{o}{\PYZhy{}} \PY{n}{variable3}
+\end{Verbatim}
+
+
+    Notice how the results of these operations were not automatically
+displayed in the command line. This is desired behaviour of any
+programming language. Imagine that you have a very long and complicated
+script full of mathematical operations, but are only interested in the
+end result. It would be a nightmare if each and every intermediate
+result was displayed in the command line..
+
+    To display specific variables (and some text) in the command line, use
+the \textbf{print} statement.\\
+The print statement is a \textbf{function}. As in maths, functions take
+some value as input, apply a transformation and return the result of
+this transformation as output. In case of the print statement, it takes
+strings of characters and variables as input, and - as the name suggests
+- "prints" the result to the command line (in our case the space below a
+cell with Python code). We'll learn more about functions later in the
+course.\\
+As you can see in the example below, the print function accepts all
+sorts of different input formats. Choose the one that works best for
+you!
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}12}]:} \PY{c+c1}{\PYZsh{} one variable}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{difference2}\PY{p}{)} 
+         \PY{c+c1}{\PYZsh{} multiple variables can be separated by a comma}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{sum\PYZus{}of\PYZus{}two}\PY{p}{,} \PY{n}{difference}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} we can also construct a string by concatenating text and numbers (that we have turned into strings)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Sum of int1 and int2 is }\PY{l+s+s1}{\PYZsq{}} \PY{o}{+} \PY{n+nb}{str}\PY{p}{(}\PY{n}{sum\PYZus{}of\PYZus{}two}\PY{p}{)} \PY{o}{+} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ and difference between them is }\PY{l+s+s1}{\PYZsq{}} \PY{o}{+} \PY{n+nb}{str}\PY{p}{(}\PY{n}{difference}\PY{p}{)}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} you can also use \PYZob{}\PYZcb{} as placeholders and use the format method to feed values into the placeholders}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Sum of int1 and int2 is }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{, and differene between them is }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{sum\PYZus{}of\PYZus{}two}\PY{p}{,} \PY{n}{difference}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+0.5630000000000002
+12 -2
+Sum of int1 and int2 is 12 and difference between them is -2
+Sum of int1 and int2 is 12, and differene between them is -2
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}14}]:} \PY{c+c1}{\PYZsh{} in case you were confused: Python distinguished between different types of variables. }
+         \PY{c+c1}{\PYZsh{} If we assign a number to a variable, Python will assume that it\PYZsq{}s a number.}
+         \PY{c+c1}{\PYZsh{} If we put the number into quotation marks, it will assume it\PYZsq{}s a character (= letter on your keyboard) and }
+         \PY{c+c1}{\PYZsh{} can\PYZsq{}t do maths with it.}
+         \PY{c+c1}{\PYZsh{} \PYZdq{}+\PYZdq{} between numbers adds them up. \PYZdq{}+\PYZdq{} between strings/characters concatenates them}
+         \PY{n}{five\PYZus{}num} \PY{o}{=} \PY{l+m+mi}{5}
+         \PY{n}{five\PYZus{}str} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{5}\PY{l+s+s1}{\PYZsq{}} \PY{c+c1}{\PYZsh{} this is equal to str(five\PYZus{}num)}
+         \PY{n}{one\PYZus{}num} \PY{o}{=} \PY{l+m+mi}{1}
+         \PY{n}{one\PYZus{}str} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{1}\PY{l+s+s1}{\PYZsq{}}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{five\PYZus{}num} \PY{o}{+} \PY{n}{one\PYZus{}num}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{five\PYZus{}str} \PY{o}{+} \PY{n}{one\PYZus{}str}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{five\PYZus{}num} \PY{o}{+} \PY{n}{five\PYZus{}str}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+6
+51
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+
+        ---------------------------------------------------------------------------
+
+        TypeError                                 Traceback (most recent call last)
+
+        <ipython-input-14-d51f6ffb130c> in <module>()
+         10 print(five\_num + one\_num)
+         11 print(five\_str + one\_str)
+    ---> 12 print(five\_num + five\_str)
+    
+
+        TypeError: unsupported operand type(s) for +: 'int' and 'str'
+
+    \end{Verbatim}
+
+    \paragraph{\texorpdfstring{\textbf{Basic Multiplication and
+Division}}{Basic Multiplication and Division}}\label{basic-multiplication-and-division}
+
+    Imagine how limited a programming language would be, if you couldn't
+perform multiplication and division. Luckily, Python has you covered!
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}18}]:} \PY{n}{int1} \PY{o}{=} \PY{l+m+mi}{20}
+         \PY{n}{int2} \PY{o}{=} \PY{l+m+mi}{6}
+         \PY{n}{product\PYZus{}of\PYZus{}two} \PY{o}{=} \PY{n}{int1} \PY{o}{*} \PY{n}{int2}
+         \PY{n}{quotient\PYZus{}of\PYZus{}two} \PY{o}{=} \PY{n}{int1} \PY{o}{/} \PY{n}{int2}
+         \PY{n}{modulo\PYZus{}of\PYZus{}two} \PY{o}{=} \PY{n}{int1} \PY{o}{\PYZpc{}} \PY{n}{int2}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Product of int1 and int2 is }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{product\PYZus{}of\PYZus{}two}\PY{p}{)}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Dividing int1 by int2 yields }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{ }\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{quotient\PYZus{}of\PYZus{}two}\PY{p}{)}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{The remainder after dividing int1 by int2 is }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{ }\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{modulo\PYZus{}of\PYZus{}two}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Product of int1 and int2 is 120
+Dividing int1 by int2 yields 3.3333333333333335 
+The remainder after dividing int1 by int2 is 2 
+
+    \end{Verbatim}
+
+    \paragraph{\texorpdfstring{\textbf{Exponentiation}}{Exponentiation}}\label{exponentiation}
+
+    And of course, you can also perform exponentiation!
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}19}]:} \PY{n}{base\PYZus{}1} \PY{o}{=} \PY{l+m+mi}{2}
+         \PY{n}{base\PYZus{}2} \PY{o}{=} \PY{l+m+mi}{9}
+         \PY{n}{exponent\PYZus{}1} \PY{o}{=} \PY{l+m+mi}{4}
+         \PY{n}{exponent\PYZus{}2} \PY{o}{=} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1}
+         \PY{n}{exponent\PYZus{}3} \PY{o}{=} \PY{l+m+mf}{0.5}
+         \PY{n}{result\PYZus{}1} \PY{o}{=} \PY{n}{base\PYZus{}1}\PY{o}{*}\PY{o}{*}\PY{n}{exponent\PYZus{}1}
+         \PY{n}{result\PYZus{}2} \PY{o}{=} \PY{n}{base\PYZus{}1}\PY{o}{*}\PY{o}{*}\PY{n}{exponent\PYZus{}2}
+         \PY{n}{result\PYZus{}3} \PY{o}{=} \PY{n}{base\PYZus{}2}\PY{o}{*}\PY{o}{*}\PY{n}{exponent\PYZus{}3}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{2\PYZca{}4= }\PY{l+s+s1}{\PYZsq{}} \PY{o}{+} \PY{n+nb}{str}\PY{p}{(}\PY{n}{result\PYZus{}1}\PY{p}{)}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{2\PYZca{}\PYZhy{}1 = 1/2 = }\PY{l+s+s1}{\PYZsq{}} \PY{o}{+} \PY{n+nb}{str}\PY{p}{(}\PY{n}{result\PYZus{}2}\PY{p}{)}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{9\PYZca{}0.5 = square root of 9 =  }\PY{l+s+s1}{\PYZsq{}} \PY{o}{+} \PY{n+nb}{str}\PY{p}{(}\PY{n}{result\PYZus{}3}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+2\^{}4= 16
+2\^{}-1 = 1/2 = 0.5
+9\^{}0.5 = square root of 9 =  3.0
+
+    \end{Verbatim}
+
+    \paragraph{\texorpdfstring{\textbf{Logical
+Operators}}{Logical Operators}}\label{logical-operators}
+
+    In programming you very often need to know whether a statement is true
+or false. This can be achieved with Boolean variables, which you'll find
+become very handy over time:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}20}]:} \PY{n}{bool1} \PY{o}{=} \PY{k+kc}{True}
+         \PY{n}{bool2} \PY{o}{=} \PY{k+kc}{False} 
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{bool1}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{bool2}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{bool1} \PY{o+ow}{and} \PY{n}{bool2}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{bool1} \PY{o+ow}{or} \PY{n}{bool2}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{bool1} \PY{o+ow}{and} \PY{o+ow}{not} \PY{n}{bool2}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+True
+False
+False
+True
+True
+
+    \end{Verbatim}
+
+    More frequently, you will be able to check whether relationships between
+variables are true or false or do something conditionally based on
+whether a statement is true (see below):
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}21}]:} \PY{n+nb}{print}\PY{p}{(}\PY{l+m+mi}{5} \PY{o}{\PYZlt{}} \PY{l+m+mi}{6}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+m+mi}{6} \PY{o}{\PYZgt{}}\PY{o}{=} \PY{l+m+mi}{5}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+m+mi}{5} \PY{o}{!=} \PY{l+m+mi}{10}\PY{o}{/}\PY{l+m+mi}{2}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{hello}\PY{l+s+s1}{\PYZsq{}} \PY{o}{!=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{world}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+True
+True
+False
+True
+
+    \end{Verbatim}
+
+    Logical operators are very powerful. For instance, you can test whether
+a variable lies within a certain interval:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}22}]:} \PY{n}{int1} \PY{o}{=} \PY{l+m+mi}{10}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{int1} \PY{o}{\PYZlt{}} \PY{l+m+mi}{12} \PY{o+ow}{and} \PY{n}{int1} \PY{o}{\PYZgt{}} \PY{l+m+mi}{9}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(} \PY{l+m+mi}{9} \PY{o}{\PYZlt{}} \PY{n}{int1} \PY{o}{\PYZlt{}} \PY{l+m+mi}{12}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+True
+True
+
+    \end{Verbatim}
+
+    \subsubsection{\texorpdfstring{\textbf{TASK: Define variables and write
+code
+to...}}{TASK: Define variables and write code to...}}\label{task-define-variables-and-write-code-to...}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Calculate square root of 25, 144 and 289
+\item
+  Translate the following into Python
+\end{enumerate}
+
+\begin{itemize}
+\tightlist
+\item
+  assign numbers between 1 and 100 to 3 different variables
+\item
+  add up your 3 variables and print whether the sum is bigger than 100
+\end{itemize}
+
+\textbf{Hints}: * You can either use a built-in function (sqrt(x)), or
+perform clever exponentiation (what does x\^{}0.5 do to x?) * look at
+the section on logical operators if you're stuck!
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} \PY{c+c1}{\PYZsh{} Your code for example 1 here }
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+m+mi}{25}\PY{o}{*}\PY{o}{*}\PY{l+m+mf}{0.5}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+m+mi}{144}\PY{o}{*}\PY{o}{*}\PY{o}{.}\PY{l+m+mi}{5}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+m+mi}{289}\PY{o}{*}\PY{o}{*}\PY{o}{.}\PY{l+m+mi}{5}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+5.0
+12.0
+17.0
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} \PY{c+c1}{\PYZsh{} Your code for example 2 here }
+        \PY{n}{var1} \PY{o}{=} \PY{l+m+mi}{20}
+        \PY{n}{var2} \PY{o}{=} \PY{l+m+mi}{66}
+        \PY{n}{var3} \PY{o}{=} \PY{l+m+mi}{2}
+        \PY{n+nb}{print}\PY{p}{(}\PY{p}{(}\PY{n}{var1} \PY{o}{+} \PY{n}{var2} \PY{o}{+} \PY{n}{var3}\PY{p}{)} \PY{o}{\PYZgt{}} \PY{l+m+mi}{100}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+False
+
+    \end{Verbatim}
+
+    \subsection{\texorpdfstring{\textbf{1.2 LOOPS and
+STATEMENTS}}{1.2 LOOPS and STATEMENTS}}\label{loops-and-statements}
+
+    Loops allow you to execute the same operation multiple times, but with a
+different type of input on each iteration.\\
+Statement allow you to structure your code, and have the computer care
+about certain bits only if conditions you specify are met.\\
+In this section, we'll learn more about both
+
+    \subsubsection{\texorpdfstring{\textbf{1.2.1 While
+Loops}}{1.2.1 While Loops}}\label{while-loops}
+
+    Use while loops whenever you need to apply an operation multiple times,
+but don't know exactly how many iterations are needed:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}4}]:} \PY{c+c1}{\PYZsh{} WHILE loops}
+        \PY{n}{x} \PY{o}{=} \PY{l+m+mi}{500}
+        \PY{k}{while} \PY{n}{x} \PY{o}{\PYZgt{}} \PY{l+m+mi}{10}\PY{p}{:}
+            \PY{n+nb}{print}\PY{p}{(}\PY{n+nb}{str}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{)}
+            \PY{n}{x} \PY{o}{=} \PY{n}{x} \PY{o}{/}\PY{o}{/} \PY{l+m+mi}{2}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+500
+250
+125
+62
+31
+15
+
+    \end{Verbatim}
+
+    \subsubsection{\texorpdfstring{\textbf{1.2.2 For
+Loops}}{1.2.2 For Loops}}\label{for-loops}
+
+    For loops come in handy whenever you need to apply a function to each
+item of a (potentially very long) list, and you know exactly how many
+iterations you need: (note for the pros: all for loops in python are
+actually for-each loops)
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}26}]:} \PY{c+c1}{\PYZsh{} FOR loops }
+         
+         \PY{n}{modules} \PY{o}{=} \PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{cognitive}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{developmental}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{neuro}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{clinical}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{social}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{computational}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}
+         \PY{k}{for} \PY{n}{x} \PY{o+ow}{in} \PY{n}{modules}\PY{p}{:}
+             \PY{n+nb}{print}\PY{p}{(}\PY{n}{x}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+cognitive
+developmental
+neuro
+clinical
+social
+computational
+
+    \end{Verbatim}
+
+    \subsubsection{\texorpdfstring{\textbf{1.2.3 If...Then
+Conditionals}}{1.2.3 If...Then Conditionals}}\label{if...then-conditionals}
+
+    Before we talk about if..then conditionals, let's first learn something
+new! the len() command counts the number if symbols in a list. Example:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}27}]:} \PY{c+c1}{\PYZsh{} let\PYZsq{}s count how many numbers are in this list}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{} Note that it also works with strings (which are essentially lists of symbols)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{hello world}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+5
+11
+
+    \end{Verbatim}
+
+    Programming is all about case-specific processing. Use if..then
+statements to process inputs depending on conditions you have specified:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}28}]:} \PY{c+c1}{\PYZsh{} IF...THEN statements }
+         
+         
+         \PY{n}{favoriteModule} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{computational}\PY{l+s+s2}{\PYZdq{}}
+         \PY{n}{firstModule} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{social}\PY{l+s+s2}{\PYZdq{}}
+         
+         \PY{k}{if} \PY{n+nb}{len}\PY{p}{(}\PY{n}{firstModule}\PY{p}{)} \PY{o}{\PYZlt{}} \PY{n+nb}{len}\PY{p}{(}\PY{n}{favoriteModule}\PY{p}{)}\PY{p}{:} 
+             \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{These modules are of different lengths!}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{k}{elif} \PY{n+nb}{len}\PY{p}{(}\PY{n}{firstModule}\PY{p}{)} \PY{o}{==} \PY{n+nb}{len}\PY{p}{(}\PY{n}{favoriteModule}\PY{p}{)}\PY{p}{:} 
+             \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{These modules are of same lengths!}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+These modules are of different lengths!
+
+    \end{Verbatim}
+
+    Very commonly in coding practice you'll find that you want to check
+multiple conditions before doing something with your variables. Python
+is easy when it comes to this - just tell it whether you want to use
+'and' or 'or' or a different logical connector.
+
+\href{https://https://docs.python.org/2.0/ref/lambda.html}{Link to a
+good starting point on Boolean operators in Python}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}29}]:} \PY{n}{a} \PY{o}{=} \PY{l+m+mi}{200}
+         \PY{n}{b} \PY{o}{=} \PY{l+m+mi}{33}
+         \PY{n}{c} \PY{o}{=} \PY{l+m+mi}{500}
+         \PY{k}{if} \PY{n}{a} \PY{o}{\PYZgt{}} \PY{n}{b} \PY{o+ow}{and} \PY{n}{c} \PY{o}{\PYZgt{}} \PY{n}{a}\PY{p}{:}
+             \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Both conditions are true!}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{k}{else}\PY{p}{:} 
+             \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Both conditions are not true!}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+           
+           
+         \PY{k}{if} \PY{n}{a} \PY{o}{\PYZgt{}} \PY{n}{b} \PY{o+ow}{or} \PY{n}{a} \PY{o}{\PYZgt{}} \PY{n}{c}\PY{p}{:}
+             \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{At least one of the conditions is true!}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Both conditions are true!
+At least one of the conditions is true!
+
+    \end{Verbatim}
+
+    \subsubsection{\texorpdfstring{\textbf{TASK: Write your own for loop and
+if/then
+statement}}{TASK: Write your own for loop and if/then statement}}\label{task-write-your-own-for-loop-and-ifthen-statement}
+
+Given
+
+\begin{verbatim}
+ modules = ["cognitive", "developmental", "neuro", "clinical", "social", "computational"]
+ comparisonVariable = "introductory"
+\end{verbatim}
+
+Determine whether any of the modules have names that are longer than the
+comparison variable.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}6}]:} \PY{n}{modules} \PY{o}{=} \PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{cognitive}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{developmental}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{neuro}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{clinical}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{social}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{computational}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}
+        \PY{n}{comparisonVariable} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{introductory}\PY{l+s+s2}{\PYZdq{}}
+        
+        \PY{c+c1}{\PYZsh{} Your code here}
+        \PY{n}{anyNameLonger} \PY{o}{=} \PY{k+kc}{False}
+        \PY{k}{for} \PY{n}{mod} \PY{o+ow}{in} \PY{n}{modules}\PY{p}{:}
+            \PY{k}{if} \PY{n+nb}{len}\PY{p}{(}\PY{n}{mod}\PY{p}{)} \PY{o}{\PYZgt{}} \PY{n+nb}{len}\PY{p}{(}\PY{n}{comparisonVariable}\PY{p}{)}\PY{p}{:}
+                \PY{n}{anyNameLonger} \PY{o}{=} \PY{k+kc}{True}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{anyNameLonger}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+True
+
+    \end{Verbatim}
+
+    \subsection{\texorpdfstring{\textbf{1.3
+FUNCTIONS}}{1.3 FUNCTIONS}}\label{functions}
+
+    \subsubsection{\texorpdfstring{\textbf{1.3.1 Introduction to
+Functions}}{1.3.1 Introduction to Functions}}\label{introduction-to-functions}
+
+    Functions are nothing new. You have already worked with them in the
+previous exercises!
+
+Here are some examples...
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}31}]:} \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{hello world}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{2*3:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{l+m+mi}{2}\PY{o}{*}\PY{l+m+mi}{3}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{hello world}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+hello world
+2*3: 6
+11
+
+    \end{Verbatim}
+
+    What makes coding so great, is that you're able to write your own
+functions! Whenever you identify a recurring task in your workflow,
+consider writing a function instead of copying \& pasting code over and
+over again:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}32}]:} \PY{c+c1}{\PYZsh{} naive approach for testing parity of several numbers:}
+         \PY{k}{if} \PY{l+m+mi}{3} \PY{o}{\PYZpc{}} \PY{l+m+mi}{2} \PY{o}{==} \PY{l+m+mi}{0}\PY{p}{:}
+             \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{ is even}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{)}\PY{p}{)}
+         \PY{k}{else}\PY{p}{:}
+             \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{ is odd}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{)}\PY{p}{)}
+         
+             
+         \PY{k}{if} \PY{l+m+mi}{2} \PY{o}{\PYZpc{}} \PY{l+m+mi}{2} \PY{o}{==} \PY{l+m+mi}{0}\PY{p}{:}
+             \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{ is even}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}
+         \PY{k}{else}\PY{p}{:}
+             \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{ is odd}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}
+         
+         
+         \PY{k}{if} \PY{l+m+mi}{11} \PY{o}{\PYZpc{}} \PY{l+m+mi}{2} \PY{o}{==} \PY{l+m+mi}{0}\PY{p}{:}
+             \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{ is even}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{l+m+mi}{11}\PY{p}{)}\PY{p}{)}
+         \PY{k}{else}\PY{p}{:}
+             \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{ is odd}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{l+m+mi}{11}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+3 is odd
+2 is even
+11 is odd
+
+    \end{Verbatim}
+
+    In the example above, we tested whether several numbers are odd or even.
+Instead of repeating the same if..then construct over and over again, we
+can put it in a neat little function:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}33}]:} \PY{c+c1}{\PYZsh{} let\PYZsq{}s write a function that does the work for us!}
+         \PY{k}{def} \PY{n+nf}{return\PYZus{}parity}\PY{p}{(}\PY{n}{n}\PY{p}{)}\PY{p}{:}
+             \PY{n}{result} \PY{o}{=} \PY{n+nb}{str}\PY{p}{(}\PY{n}{n}\PY{p}{)} \PY{o}{+} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ is}\PY{l+s+s1}{\PYZsq{}}
+             \PY{k}{if} \PY{n}{n} \PY{o}{\PYZpc{}} \PY{l+m+mi}{2} \PY{o}{==} \PY{l+m+mi}{0}\PY{p}{:}
+                 \PY{k}{return} \PY{n}{result} \PY{o}{+} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ even}\PY{l+s+s1}{\PYZsq{}}
+             \PY{k}{else}\PY{p}{:}
+                 \PY{k}{return} \PY{n}{result} \PY{o}{+} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ odd}\PY{l+s+s1}{\PYZsq{}}
+           
+\end{Verbatim}
+
+
+    Now we can simply apply the function to each of the numbers we're
+interested in
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}34}]:} \PY{n+nb}{print}\PY{p}{(}\PY{n}{return\PYZus{}parity}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{)}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{return\PYZus{}parity}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{return\PYZus{}parity}\PY{p}{(}\PY{l+m+mi}{11}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+3 is odd
+2 is even
+11 is odd
+
+    \end{Verbatim}
+
+    By the way, if..then statements can be compressed into one-liners:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}35}]:} \PY{c+c1}{\PYZsh{} let\PYZsq{}s make this shorter}
+         \PY{k}{def} \PY{n+nf}{return\PYZus{}parity}\PY{p}{(}\PY{n}{n}\PY{p}{)}\PY{p}{:}
+             \PY{n}{result} \PY{o}{=} \PY{n+nb}{str}\PY{p}{(}\PY{n}{n}\PY{p}{)} \PY{o}{+} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ is }\PY{l+s+s1}{\PYZsq{}}
+             \PY{k}{return} \PY{n}{result} \PY{o}{+} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{even}\PY{l+s+s1}{\PYZsq{}} \PY{k}{if} \PY{n}{n} \PY{o}{\PYZpc{}} \PY{l+m+mi}{2} \PY{o}{==} \PY{l+m+mi}{0} \PY{k}{else} \PY{n}{result} \PY{o}{+} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{odd}\PY{l+s+s1}{\PYZsq{}}
+\end{Verbatim}
+
+
+    Did you notice something? We applied the function to several different
+numbers. Why not put all numbers in a list and use a loop to iterate
+over them?
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}36}]:} \PY{c+c1}{\PYZsh{} let\PYZsq{}s combine this with loops}
+         \PY{n}{numbers} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{11}\PY{p}{]}
+         \PY{k}{for} \PY{n}{ii} \PY{o+ow}{in} \PY{n}{numbers}\PY{p}{:}
+             \PY{n+nb}{print}\PY{p}{(}\PY{n}{return\PYZus{}parity}\PY{p}{(}\PY{n}{ii}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+3 is odd
+2 is even
+11 is odd
+
+    \end{Verbatim}
+
+    Functions can be put inside other functions. Let's write a wrapper that
+iterates over a list!
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}37}]:} \PY{c+c1}{\PYZsh{}let\PYZsq{}s write a wrapper!}
+         \PY{k}{def} \PY{n+nf}{check\PYZus{}item\PYZus{}parity}\PY{p}{(}\PY{n}{arr}\PY{p}{)}\PY{p}{:}
+             \PY{k}{for} \PY{n}{ii} \PY{o+ow}{in} \PY{n}{arr}\PY{p}{:}
+                 \PY{n+nb}{print}\PY{p}{(}\PY{n}{return\PYZus{}parity}\PY{p}{(}\PY{n}{ii}\PY{p}{)}\PY{p}{)}
+           
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}38}]:} \PY{n}{check\PYZus{}item\PYZus{}parity}\PY{p}{(}\PY{n}{numbers}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+3 is odd
+2 is even
+11 is odd
+
+    \end{Verbatim}
+
+    Now if you define a different list of numbers you want to check parity
+for, you can simply use your wrapped function instead of calling
+check\_parity over and over again. See below:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}39}]:} \PY{n}{longerArray} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{,} \PY{l+m+mi}{6}\PY{p}{,} \PY{l+m+mi}{7}\PY{p}{,} \PY{l+m+mi}{8}\PY{p}{,} \PY{l+m+mi}{9}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{,} \PY{l+m+mi}{23}\PY{p}{,} \PY{l+m+mi}{25}\PY{p}{,} \PY{l+m+mi}{72}\PY{p}{,} \PY{l+m+mi}{43}\PY{p}{,} \PY{l+m+mi}{52}\PY{p}{,} \PY{l+m+mi}{26}\PY{p}{,} \PY{l+m+mi}{24}\PY{p}{,} \PY{l+m+mi}{23}\PY{p}{,} \PY{l+m+mi}{16}\PY{p}{]}
+         \PY{n}{check\PYZus{}item\PYZus{}parity}\PY{p}{(}\PY{n}{longerArray}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+2 is even
+3 is odd
+4 is even
+5 is odd
+6 is even
+7 is odd
+8 is even
+9 is odd
+10 is even
+23 is odd
+25 is odd
+72 is even
+43 is odd
+52 is even
+26 is even
+24 is even
+23 is odd
+16 is even
+
+    \end{Verbatim}
+
+    Functions are treated as so-called first class objects - you can assign
+them to variables...
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}40}]:} \PY{n}{my\PYZus{}len} \PY{o}{=} \PY{n+nb}{len}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{my\PYZus{}len}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{hello world}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} (don\PYZsq{}t ask why you would want to do this. but it works x) )}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+11
+
+    \end{Verbatim}
+
+    .. and you can pass them as inputs to other functions
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}41}]:} \PY{k}{def} \PY{n+nf}{do\PYZus{}sth\PYZus{}with\PYZus{}number}\PY{p}{(}\PY{n}{number}\PY{p}{,} \PY{n}{something}\PY{p}{)}\PY{p}{:}
+             \PY{n+nb}{print}\PY{p}{(}\PY{n}{something}\PY{p}{(}\PY{n}{number}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}42}]:} \PY{n}{do\PYZus{}sth\PYZus{}with\PYZus{}number}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{2}\PY{p}{,} \PY{n+nb}{abs}\PY{p}{)}
+         \PY{n}{do\PYZus{}sth\PYZus{}with\PYZus{}number}\PY{p}{(}\PY{l+m+mf}{9.34}\PY{p}{,}\PY{n+nb}{round}\PY{p}{)}
+         \PY{n}{do\PYZus{}sth\PYZus{}with\PYZus{}number}\PY{p}{(}\PY{l+m+mi}{9}\PY{p}{,}\PY{n}{return\PYZus{}parity}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+2
+9
+9 is odd
+
+    \end{Verbatim}
+
+    \subsubsection{\texorpdfstring{\textbf{1.3.2
+Docstrings}}{1.3.2 Docstrings}}\label{docstrings}
+
+    Programming can be a very complicated endeavour. And who is able to
+remember for each and every function how to use it? Nobody. In fact, in
+real life, whenever you need to write a program, you'll notice that you
+spend most of the time googling stuff and scrolling through online
+forums. That's absolutely normal and even the biggest coding pros do
+this all the time.\\
+But even if you don't have internet, there's still hope: Python provides
+documentation for all of its built-in functions. These brief info
+snippets are called \emph{docstrings} and we'll show you two ways to
+access them.\\
+First, you could simply add a question mark to the function you're
+interested in, and execute the line of code:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}43}]:} print\PY{o}{?}
+\end{Verbatim}
+
+
+    Docstring: print(value, ..., sep=' ', end='\n', file=sys.stdout,
+flush=False)
+
+Prints the values to a stream, or to sys.stdout by default. Optional
+keyword arguments: file: a file-like object (stream); defaults to the
+current sys.stdout. sep: string inserted between values, default a
+space. end: string appended after the last value, default a newline.
+flush: whether to forcibly flush the stream. Type:
+builtin\_function\_or\_method
+
+    Alternatively, you pass it as argument to the help function:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}44}]:} \PY{n}{help}\PY{p}{(}\PY{n+nb}{print}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Help on built-in function print in module builtins:
+
+print({\ldots})
+    print(value, {\ldots}, sep=' ', end='\textbackslash{}n', file=sys.stdout, flush=False)
+    
+    Prints the values to a stream, or to sys.stdout by default.
+    Optional keyword arguments:
+    file:  a file-like object (stream); defaults to the current sys.stdout.
+    sep:   string inserted between values, default a space.
+    end:   string appended after the last value, default a newline.
+    flush: whether to forcibly flush the stream.
+
+
+    \end{Verbatim}
+
+    When you write your own functions, don't forget to add documentation on
+how to use them. This saves a lot of time and avoids nervous breakdowns
+when you come back to your code a few months later. In fact, you can
+easily write your own docstrings! Here's an example\\
+Docstrings are indicated by """ yourtextgoeshere """
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}45}]:} \PY{k}{def} \PY{n+nf}{return\PYZus{}parity}\PY{p}{(}\PY{n}{n}\PY{p}{)}\PY{p}{:}
+             \PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{} }
+         \PY{l+s+sd}{      This function tests whether its input is odd or even.}
+         \PY{l+s+sd}{      INPUT: (int) an arbitrary number}
+         \PY{l+s+sd}{      OUTPUT: (str) \PYZsq{}even\PYZsq{} or \PYZsq{}odd\PYZsq{} }
+         \PY{l+s+sd}{    \PYZdq{}\PYZdq{}\PYZdq{}}
+             \PY{n}{result} \PY{o}{=} \PY{n+nb}{str}\PY{p}{(}\PY{n}{n}\PY{p}{)} \PY{o}{+} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ is }\PY{l+s+s1}{\PYZsq{}}
+             \PY{k}{return} \PY{n}{result} \PY{o}{+} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{even}\PY{l+s+s1}{\PYZsq{}} \PY{k}{if} \PY{n}{n} \PY{o}{\PYZpc{}} \PY{l+m+mi}{2} \PY{o}{==} \PY{l+m+mi}{0} \PY{k}{else} \PY{n}{result} \PY{o}{+} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{odd}\PY{l+s+s1}{\PYZsq{}}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}46}]:} \PY{n}{help}\PY{p}{(}\PY{n}{return\PYZus{}parity}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Help on function return\_parity in module \_\_main\_\_:
+
+return\_parity(n)
+    This function tests whether its input is odd or even.
+    INPUT: (int) an arbitrary number
+    OUTPUT: (str) 'even' or 'odd'
+
+
+    \end{Verbatim}
+
+    \subsubsection{\texorpdfstring{\textbf{Task: Write your own
+function!}}{Task: Write your own function!}}\label{task-write-your-own-function}
+
+    Write a function that takes a list of numbers as inputs and returns the
+mean of these numbers!\\
+Remember, given a vector of numbers \textgreater{}
+\(\textbf{x} = [x_1, x_2, x_3, x_4, ...., x_n]\)
+
+the mean is defined as:
+
+\begin{quote}
+\(mean(\textbf{x})=\frac{1}{N}\sum_{i=1}^{N} x_i = \frac{1}{N}(x_1 + x_2 + x_3 + ... + x_n)\)
+\end{quote}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}7}]:} \PY{n}{numbers} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{,}\PY{l+m+mi}{8}\PY{p}{,}\PY{l+m+mi}{7}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{9}\PY{p}{]}
+        \PY{c+c1}{\PYZsh{} your code goes here}
+        \PY{c+c1}{\PYZsh{} SAMPLE SOLUTION}
+        \PY{k}{def} \PY{n+nf}{compute\PYZus{}mean}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{:}
+            \PY{k}{return} \PY{n+nb}{sum}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{o}{/}\PY{n+nb}{len}\PY{p}{(}\PY{n}{x}\PY{p}{)}
+\end{Verbatim}
+
+
+    Now write a function that computes the variance of a list of numbers.
+Remember, the variance is defined as \textgreater{}
+\(var(\textbf{x}) = \frac{1}{N} \sum_{i=1}^{N}(x_i-\bar{x})^2\), where
+\(mean(\textbf{x}) = \bar{x}\)\\
+\textgreater{} \textgreater{} or alternatively:\\
+\textgreater{} \textgreater{}
+\(var(\textbf{x}) = \frac{1}{N} \sum_{i=1}^{N}(x_i^2) -\bar{x}^2\)
+("expectation of square minus square of expectation")
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}8}]:} \PY{n}{numbers} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{,}\PY{l+m+mi}{8}\PY{p}{,}\PY{l+m+mi}{7}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{9}\PY{p}{]}
+        \PY{c+c1}{\PYZsh{} your code goes here}
+        \PY{c+c1}{\PYZsh{} SAMPLE SOLUTION}
+        \PY{k}{def} \PY{n+nf}{compute\PYZus{}variance}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{:}  
+            \PY{k}{return} \PY{n}{compute\PYZus{}mean}\PY{p}{(}\PY{p}{[}\PY{n}{ii}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2} \PY{k}{for} \PY{n}{ii} \PY{o+ow}{in} \PY{n}{x}\PY{p}{]}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{n}{compute\PYZus{}mean}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}
+            \PY{n+nb}{print}\PY{p}{(}\PY{n}{compute\PYZus{}variance}\PY{p}{(}\PY{n}{numbers}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    Now add docstrings to your functions to explain how to use them
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}9}]:} \PY{c+c1}{\PYZsh{}SAMPLE SOLUTIONS}
+        \PY{k}{def} \PY{n+nf}{compute\PYZus{}mean}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{:}
+            \PY{l+s+sd}{\PYZsq{}\PYZsq{}\PYZsq{} }
+        \PY{l+s+sd}{    computes mean of a list of numbers }
+        \PY{l+s+sd}{    INPUT: x (list)}
+        \PY{l+s+sd}{    OUTPUT: mu (float)}
+        \PY{l+s+sd}{    \PYZsq{}\PYZsq{}\PYZsq{}}
+            \PY{k}{return} \PY{n+nb}{sum}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{o}{/}\PY{n+nb}{len}\PY{p}{(}\PY{n}{x}\PY{p}{)}
+        
+        \PY{k}{def} \PY{n+nf}{compute\PYZus{}variance}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{:}  
+            \PY{l+s+sd}{\PYZsq{}\PYZsq{}\PYZsq{}}
+        \PY{l+s+sd}{    computes variance of a list of numbers }
+        \PY{l+s+sd}{    INPUT: x (list)}
+        \PY{l+s+sd}{    OUTPUT: var (float)}
+        \PY{l+s+sd}{    \PYZsq{}\PYZsq{}\PYZsq{}}
+            \PY{k}{return} \PY{n}{compute\PYZus{}mean}\PY{p}{(}\PY{p}{[}\PY{n}{ii}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2} \PY{k}{for} \PY{n}{ii} \PY{o+ow}{in} \PY{n}{x}\PY{p}{]}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{n}{compute\PYZus{}mean}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}
+        
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{help}\PY{p}{(}\PY{n}{compute\PYZus{}mean}\PY{p}{)}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{help}\PY{p}{(}\PY{n}{compute\PYZus{}variance}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Help on function compute\_mean in module \_\_main\_\_:
+
+compute\_mean(x)
+    computes mean of a list of numbers 
+    INPUT: x (list)
+    OUTPUT: mu (float)
+
+None
+Help on function compute\_variance in module \_\_main\_\_:
+
+compute\_variance(x)
+    computes variance of a list of numbers 
+    INPUT: x (list)
+    OUTPUT: var (float)
+
+None
+
+    \end{Verbatim}
+
+    \subsubsection{\texorpdfstring{\textbf{BONUS: Advanced Programming
+Principle:
+Recursion}}{BONUS: Advanced Programming Principle: Recursion}}\label{bonus-advanced-programming-principle-recursion}
+
+    Functions are very versatile! They can even call themselves with a
+subset of of the original problem. This is called recursion. Below is a
+naive solution to find the factorial of a number. As reminder, a
+factorial of a number n is just a product of all integers from 1 to n:\\
+**n! = 1\emph{2}3\emph{4}......*n**
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}49}]:} \PY{k}{def} \PY{n+nf}{iterative\PYZus{}factorial}\PY{p}{(}\PY{n}{n}\PY{p}{)}\PY{p}{:}
+             \PY{n}{fact} \PY{o}{=} \PY{l+m+mi}{1}
+             \PY{k}{for} \PY{n}{ii} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{n}\PY{p}{)}\PY{p}{:}
+                 \PY{n}{fact} \PY{o}{*}\PY{o}{=} \PY{n}{ii}\PY{o}{+}\PY{l+m+mi}{1}
+             \PY{k}{return} \PY{n}{fact}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}50}]:} \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{4!: }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{n}{iterative\PYZus{}factorial}\PY{p}{(}\PY{l+m+mi}{4}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+4!:  24
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}51}]:} \PY{k}{def} \PY{n+nf}{recursive\PYZus{}factorial}\PY{p}{(}\PY{n}{n}\PY{p}{)}\PY{p}{:}
+             \PY{k}{if} \PY{n}{n} \PY{o}{\PYZgt{}}\PY{l+m+mi}{1}\PY{p}{:}
+                 \PY{n}{fact} \PY{o}{=} \PY{n}{n}\PY{o}{*}\PY{n}{recursive\PYZus{}factorial}\PY{p}{(}\PY{n}{n}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}
+                 \PY{k}{return} \PY{n}{fact}
+             \PY{k}{else}\PY{p}{:}
+                 \PY{k}{return} \PY{n}{n}
+             
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}52}]:} \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{4!: }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{n}{recursive\PYZus{}factorial}\PY{p}{(}\PY{l+m+mi}{4}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+4!:  24
+
+    \end{Verbatim}
+
+    \subsection{\texorpdfstring{\textbf{1.4
+.METHODS()}}{1.4 .METHODS()}}\label{methods}
+
+    Python is an object oriented language. An object is an abstract entity
+that contains some data and functions that can be applied to the data
+(Imagine a drawer (container) for socks (data) that has a built-in sock
+sorting machine (function)). Functions that are applied directly to
+objects are called \textbf{methods}. In this section we'll learn how to
+apply methods to objects.\\
+Many entities in Python are objects. For example, strings are objects as
+they contain some data, as for example "hello world", and they come with
+many functions that can be applied to the data. Let's have a look at an
+example:
+
+    \subsubsection{\texorpdfstring{\textbf{1.4.1 Example: methods to
+manipulate
+strings}}{1.4.1 Example: methods to manipulate strings}}\label{example-methods-to-manipulate-strings}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}53}]:} \PY{c+c1}{\PYZsh{} here we create a simple variable that contains a sequence of symbols}
+         \PY{n}{string} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{hello world}\PY{l+s+s2}{\PYZdq{}}
+         \PY{c+c1}{\PYZsh{} Python understands that this is what it would call a string, and allows you to apply methods}
+         \PY{c+c1}{\PYZsh{} that are purpose\PYZhy{}built for string manipulation:}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{string}\PY{o}{.}\PY{n}{upper}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{string}\PY{o}{.}\PY{n}{capitalize}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{string}\PY{o}{.}\PY{n}{replace}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ world}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{, nice to meet you}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{)}
+         \PY{n}{listOfWords} \PY{o}{=} \PY{n}{string}\PY{o}{.}\PY{n}{split}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ }\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{listOfWords}\PY{p}{)}
+         \PY{n}{newString} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{, }\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{n}{listOfWords}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{newString}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+HELLO WORLD
+Hello world
+hello, nice to meet you
+['hello', 'world']
+hello, world
+
+    \end{Verbatim}
+
+    in contrast to functions, for which the syntax is
+\emph{function(argument)}, methods are bound to objects. Thus, the
+syntax is \emph{object.method(argument)}
+
+    \subsubsection{\texorpdfstring{\textbf{1.4.2 Methods are object
+specific!}}{1.4.2 Methods are object specific!}}\label{methods-are-object-specific}
+
+    As methods are bound to a particular object type, you can't apply them
+to other objects. For instance, you can't capitalise numbers:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}54}]:} \PY{c+c1}{\PYZsh{} let\PYZsq{}s create a variable that contains a number}
+         \PY{n}{number} \PY{o}{=} \PY{l+m+mf}{0.5}
+         \PY{c+c1}{\PYZsh{} Python realises that this is not a string, and therefore you\PYZsq{}re not able to capitalise it!}
+         \PY{n}{number}\PY{o}{.}\PY{n}{capitalize}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+
+        ---------------------------------------------------------------------------
+
+        AttributeError                            Traceback (most recent call last)
+
+        <ipython-input-54-93d524e9ed5f> in <module>()
+          2 number = 0.5
+          3 \# Python realises that this is not a string, and therefore you're not able to capitalise it!
+    ----> 4 number.capitalize()
+    
+
+        AttributeError: 'float' object has no attribute 'capitalize'
+
+    \end{Verbatim}
+
+    \subsubsection{\texorpdfstring{\textbf{1.4.3 How to figure out which
+methods are provided for a given
+object}}{1.4.3 How to figure out which methods are provided for a given object}}\label{how-to-figure-out-which-methods-are-provided-for-a-given-object}
+
+    to see a list of all available methods, either press {[}TAB{]} after
+placing a dot behind an object, or use the following syntax
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}77}]:} \PY{n+nb}{dir}\PY{p}{(}\PY{n+nb}{str}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}77}]:} ['\_\_add\_\_',
+          '\_\_class\_\_',
+          '\_\_contains\_\_',
+          '\_\_delattr\_\_',
+          '\_\_dir\_\_',
+          '\_\_doc\_\_',
+          '\_\_eq\_\_',
+          '\_\_format\_\_',
+          '\_\_ge\_\_',
+          '\_\_getattribute\_\_',
+          '\_\_getitem\_\_',
+          '\_\_getnewargs\_\_',
+          '\_\_gt\_\_',
+          '\_\_hash\_\_',
+          '\_\_init\_\_',
+          '\_\_init\_subclass\_\_',
+          '\_\_iter\_\_',
+          '\_\_le\_\_',
+          '\_\_len\_\_',
+          '\_\_lt\_\_',
+          '\_\_mod\_\_',
+          '\_\_mul\_\_',
+          '\_\_ne\_\_',
+          '\_\_new\_\_',
+          '\_\_reduce\_\_',
+          '\_\_reduce\_ex\_\_',
+          '\_\_repr\_\_',
+          '\_\_rmod\_\_',
+          '\_\_rmul\_\_',
+          '\_\_setattr\_\_',
+          '\_\_sizeof\_\_',
+          '\_\_str\_\_',
+          '\_\_subclasshook\_\_',
+          'capitalize',
+          'casefold',
+          'center',
+          'count',
+          'encode',
+          'endswith',
+          'expandtabs',
+          'find',
+          'format',
+          'format\_map',
+          'index',
+          'isalnum',
+          'isalpha',
+          'isdecimal',
+          'isdigit',
+          'isidentifier',
+          'islower',
+          'isnumeric',
+          'isprintable',
+          'isspace',
+          'istitle',
+          'isupper',
+          'join',
+          'ljust',
+          'lower',
+          'lstrip',
+          'maketrans',
+          'partition',
+          'replace',
+          'rfind',
+          'rindex',
+          'rjust',
+          'rpartition',
+          'rsplit',
+          'rstrip',
+          'split',
+          'splitlines',
+          'startswith',
+          'strip',
+          'swapcase',
+          'title',
+          'translate',
+          'upper',
+          'zfill']
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}78}]:} \PY{n}{help}\PY{p}{(}\PY{n+nb}{str}\PY{o}{.}\PY{n}{split}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Help on method\_descriptor:
+
+split({\ldots})
+    S.split(sep=None, maxsplit=-1) -> list of strings
+    
+    Return a list of the words in S, using sep as the
+    delimiter string.  If maxsplit is given, at most maxsplit
+    splits are done. If sep is not specified or is None, any
+    whitespace string is a separator and empty strings are
+    removed from the result.
+
+
+    \end{Verbatim}
+
+    \subsubsection{\texorpdfstring{\textbf{Task: String
+Manipulation}}{Task: String Manipulation}}\label{task-string-manipulation}
+
+You're given the following two strings:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{gibberish_1 }\OperatorTok{=} \StringTok{'is much I can''t enough.'}
+\NormalTok{gibberish_2 }\OperatorTok{=} \StringTok{'cOdinG sO FuN. JuST gEt '}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  turn the strings into lists of words (use the .split method)
+\item
+  make sure that gibberish\_2 contains only lower case letters (.lower()
+  method)
+\item
+  create a new empty list ( assign {[}{]} to a variable)
+\item
+  loop through 5 steps and for each iteration, add pairs of words to
+  your new empty list
+\item
+  turn the list into a string (use the ' '.join(list) method)
+\item
+  print the result
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}55}]:} \PY{n}{gibberish\PYZus{}1} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{is much I can}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{t enough.}\PY{l+s+s1}{\PYZsq{}}
+         \PY{n}{gibberish\PYZus{}2} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{cOdinG sO FuN. JuST gEt }\PY{l+s+s1}{\PYZsq{}}
+         
+         \PY{c+c1}{\PYZsh{} Your code goes here}
+         \PY{c+c1}{\PYZsh{} SAMPLE SOLUTION 1}
+         \PY{n}{seq1} \PY{o}{=} \PY{n}{gibberish\PYZus{}1}\PY{o}{.}\PY{n}{split}\PY{p}{(}\PY{p}{)} 
+         \PY{n}{seq2} \PY{o}{=} \PY{n}{gibberish\PYZus{}2}\PY{o}{.}\PY{n}{lower}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{split}\PY{p}{(}\PY{p}{)}
+         \PY{n}{wordlist} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+         \PY{k}{for} \PY{n}{ii} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{seq1}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+             \PY{n}{wordlist}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ }\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{p}{(}\PY{n}{seq2}\PY{p}{[}\PY{n}{ii}\PY{p}{]}\PY{p}{,} \PY{n}{seq1}\PY{p}{[}\PY{n}{ii}\PY{p}{]}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+         \PY{n}{sentence} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ }\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{n}{wordlist}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{sentence}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} SAMPLE SOLUTION 2}
+         \PY{n}{seq1} \PY{o}{=} \PY{n}{gibberish\PYZus{}1}\PY{o}{.}\PY{n}{split}\PY{p}{(}\PY{p}{)} 
+         \PY{n}{seq2} \PY{o}{=} \PY{n}{gibberish\PYZus{}2}\PY{o}{.}\PY{n}{lower}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{split}\PY{p}{(}\PY{p}{)}
+         \PY{n}{wordlist} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+         \PY{k}{for} \PY{n}{ii} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{seq1}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+             \PY{n}{wordlist}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{seq2}\PY{p}{[}\PY{n}{ii}\PY{p}{]}\PY{p}{)}
+             \PY{n}{wordlist}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{seq1}\PY{p}{[}\PY{n}{ii}\PY{p}{]}\PY{p}{)}
+         \PY{n}{sentence} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ }\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{n}{wordlist}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{sentence}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} SAMPLE SOLUTION 3 }
+         \PY{n}{seq1} \PY{o}{=} \PY{n}{gibberish\PYZus{}1}\PY{o}{.}\PY{n}{split}\PY{p}{(}\PY{p}{)} 
+         \PY{n}{seq2} \PY{o}{=} \PY{n}{gibberish\PYZus{}2}\PY{o}{.}\PY{n}{lower}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{split}\PY{p}{(}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ }\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ }\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{p}{(}\PY{n}{seq2}\PY{p}{[}\PY{n}{ii}\PY{p}{]}\PY{p}{,}\PY{n}{seq1}\PY{p}{[}\PY{n}{ii}\PY{p}{]}\PY{p}{)}\PY{p}{)} \PY{k}{for} \PY{n}{ii} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{seq1}\PY{p}{)}\PY{p}{)}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+coding is so much fun. I just cant get enough.
+coding is so much fun. I just cant get enough.
+coding is so much fun. I just cant get enough.
+
+    \end{Verbatim}
+
+    \section{\texorpdfstring{\textbf{PART2: PYTHON FOR SCIENTISTS:
+PACKAGES/LIBRARIES}}{PART2: PYTHON FOR SCIENTISTS: PACKAGES/LIBRARIES}}\label{part2-python-for-scientists-packageslibraries}
+
+    Some of the most powerful tools you'll use in Python are packages and
+libraries. These contain useful functions - from quite simple to more
+advanced ones. We'll go through a few basic examples today, but leave
+you with a list of libraries and packages to check out:
+
+\begin{itemize}
+\tightlist
+\item
+  numpy
+\item
+  matplotlib
+\item
+  seaborn
+\item
+  scipy
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}56}]:} \PY{c+c1}{\PYZsh{}You\PYZsq{}ll need to import every package you want to use. }
+         \PY{c+c1}{\PYZsh{} This is not a one\PYZhy{}time thing \PYZhy{} you have to do it in each new Python notebook. }
+         \PY{c+c1}{\PYZsh{} With time you\PYZsq{}ll have a pretty good sense of what packages you need }
+         \PY{c+c1}{\PYZsh{}(and Stackoverflow to the rescue, always!). }
+         \PY{k+kn}{import} \PY{n+nn}{numpy}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}57}]:} \PY{n}{array} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{,} \PY{l+m+mi}{6}\PY{p}{,} \PY{l+m+mi}{8}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{]}
+         
+         \PY{n}{averageOfArray} \PY{o}{=} \PY{n}{numpy}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{array}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{averageOfArray}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+6.0
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}59}]:} \PY{c+c1}{\PYZsh{} Alternatively, you can use abbreviations \PYZhy{} this is really handy. }
+         \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+         
+         \PY{n}{averageOfArray} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{array}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{averageOfArray}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+6.0
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}60}]:} \PY{c+c1}{\PYZsh{} And, of course, you can print or use any of these directly, such as: }
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{array}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+6.0
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}61}]:} \PY{c+c1}{\PYZsh{} Numpy is also powerful in prepopulating your arrays}
+         \PY{n}{a} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}  
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{a}\PY{p}{)} 
+         
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} \PY{c+c1}{\PYZsh{} space to separate outputs}
+         
+         \PY{c+c1}{\PYZsh{} or even something like if you need multiple dimensions}
+         \PY{n}{b} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{ones}\PY{p}{(}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{b}\PY{p}{)}
+         
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} you can also create an array filled with the same number of choice, something like }
+         \PY{n}{x} \PY{o}{=} \PY{l+m+mf}{27.34} 
+         \PY{n}{c} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{full}\PY{p}{(}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{)}\PY{p}{,} \PY{n}{x}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{c}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[0. 0.]
+
+[[1. 1.]
+ [1. 1.]]
+
+[27.34 27.34 27.34 27.34 27.34]
+
+    \end{Verbatim}
+
+    A few ways to visualize your data and important things to note
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}62}]:} \PY{c+c1}{\PYZsh{} Let\PYZsq{}s start by plotting something quite simple using a line plot in matplotlib (remember to import this in every notebook)}
+         \PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{pyplot} \PY{k}{as} \PY{n+nn}{plt}
+         \PY{n}{x} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{]}
+         \PY{n}{y} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{,} \PY{l+m+mi}{6}\PY{p}{,} \PY{l+m+mi}{11}\PY{p}{,} \PY{l+m+mi}{14}\PY{p}{]}
+         
+         \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{n}{linestyle}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZhy{}\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}62}]:} [<matplotlib.lines.Line2D at 0x7f95eb1940f0>]
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}63}]:} \PY{c+c1}{\PYZsh{} Alternatively, styles can be spelled out as well (this is true for colors, etc.) }
+         \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{n}{linestyle}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{dashed}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{color} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{orange}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{linewidth} \PY{o}{=} \PY{l+m+mi}{8}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}63}]:} [<matplotlib.lines.Line2D at 0x7f95eb024400>]
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_126_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}64}]:} \PY{c+c1}{\PYZsh{} You will rarely work with variables to plot that are this simple. }
+         \PY{c+c1}{\PYZsh{} Instead, it makes sense to learn how to define your x axis as continuously }
+         \PY{c+c1}{\PYZsh{} increasing so that you can plot your variable of interest on y\PYZhy{}axis}
+         
+         \PY{c+c1}{\PYZsh{} Here we take advantage of numpy\PYZsq{}s functions linspace and sin.}
+         
+         \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+         
+         \PY{n}{x} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{linspace}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{,} \PY{l+m+mi}{1000}\PY{p}{)}
+         
+         \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{sin}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{,} \PY{n}{c} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{magenta}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{linewidth} \PY{o}{=} \PY{l+m+mf}{2.5}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}64}]:} [<matplotlib.lines.Line2D at 0x7f95eaf989b0>]
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_127_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}65}]:} \PY{c+c1}{\PYZsh{} It\PYZsq{}s likely you\PYZsq{}ll often want to look at a relationship between two variables. }
+         \PY{c+c1}{\PYZsh{} You can do this simply by scattering them in matplotlib... }
+         
+         \PY{n}{x} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{]}
+         \PY{n}{y} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{,} \PY{l+m+mi}{6}\PY{p}{,} \PY{l+m+mi}{11}\PY{p}{,} \PY{l+m+mi}{14}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{7}\PY{p}{,} \PY{l+m+mi}{8}\PY{p}{,} \PY{l+m+mi}{9}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{7}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{]}
+         
+         \PY{n}{plt}\PY{o}{.}\PY{n}{scatter}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{n}{color} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{royalblue}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}65}]:} <matplotlib.collections.PathCollection at 0x7f95eaef5ef0>
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_128_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}66}]:} \PY{c+c1}{\PYZsh{} Alternatively, some more powerful visualizations are available in seaborn. }
+         \PY{c+c1}{\PYZsh{} Here, we plot the exact same as in the figure above, but denoting the line of best }
+         \PY{c+c1}{\PYZsh{} fit for this data. }
+         
+         \PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k}{as} \PY{n+nn}{pd}
+         \PY{n}{dataframe} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{x}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n}{x}\PY{p}{,} 
+                                 \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{y}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n}{y}\PY{p}{\PYZcb{}}\PY{p}{)}
+         
+         
+         \PY{k+kn}{import} \PY{n+nn}{seaborn} \PY{k}{as} \PY{n+nn}{sns} 
+         \PY{n}{g} \PY{o}{=} \PY{n}{sns}\PY{o}{.}\PY{n}{lmplot}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{x}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{y}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{data} \PY{o}{=} \PY{n}{dataframe}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_129_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}67}]:} \PY{c+c1}{\PYZsh{} Want to know how related your variables are? }
+         \PY{c+c1}{\PYZsh{} There are always multiple ways to do things in Python. Here is an example of }
+         \PY{c+c1}{\PYZsh{} how even something as simple as a correlation between two variables can be calculated }
+         \PY{c+c1}{\PYZsh{} using multiple packages. }
+         
+         \PY{n}{x} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{]}
+         \PY{n}{y} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{,} \PY{l+m+mi}{6}\PY{p}{,} \PY{l+m+mi}{11}\PY{p}{,} \PY{l+m+mi}{14}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{7}\PY{p}{,} \PY{l+m+mi}{8}\PY{p}{,} \PY{l+m+mi}{9}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{7}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{]}
+         
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Correlation using numpy: }\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{corrcoef}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+         
+         \PY{k+kn}{from} \PY{n+nn}{scipy}\PY{n+nn}{.}\PY{n+nn}{stats} \PY{k}{import} \PY{n}{linregress}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Correlation using scipy: }\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{linregress}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Correlation using numpy:  0.6923521761619424
+Correlation using scipy:  0.6923521761619424
+
+    \end{Verbatim}
+
+    \section{Part 3: Outlook}\label{part-3-outlook}
+
+    We're now at the end of our little taster session. Good job!
+
+Most importantly: Don't worry if you feel a little bit overwhelmed. We
+covered quite a lot of material that is usually taught over several
+weeks. But this notebook is self-contained and will remain available
+online. Feel free to revisit it whenever you feel like learning more
+about Python or brushing up your skills!
+
+Also, there is no need to remember every single nitty gritty bit of a
+programming language. Even experts spend most of their time googling and
+searching stackoverflow.com for solutions to their problems. That's one
+of the great benefits of working with computers and being connected to
+the internet! A solution is always only a few clicks away.
+
+Below we've collected a few ressources that we think come in handy if
+you'd like to learn more. Thanks a lot for your attention!
+
+    \subsection{Resources}\label{resources}
+
+    \paragraph{Learn coding!}\label{learn-coding}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  A complete course https://www.learnpython.org
+\item
+  Ditto https://www.w3schools.com/python/
+\item
+  Advanced Course https://automatetheboringstuff.com
+\end{enumerate}
+
+    \paragraph{How to install Python}\label{how-to-install-python}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Just python https://www.codecademy.com/articles/install-python
+\item
+  The Jupyter notebook (the thing you've been working with today)
+  https://jupyter.org/install
+\item
+  Anaconda (a collection of useful packages and other software for data
+  scientists) https://www.anaconda.com/distribution/
+\end{enumerate}
+
+\paragraph{Text Editors}\label{text-editors}
+
+Note: If you don't use notebooks, you'll need a text editor to writer
+your python code. By all means, don't use Microsoft Word! You want
+something that automatically highlights code (makes it easier to
+distinguish variables, functions and the like), and provides
+autocompletion (saves a lot of time!). Below are a few free and popular
+choices: 1. atom editor https://atom.io/ 2. vscode
+https://code.visualstudio.com/ 3. Sublime https://www.sublimetext.com/
+All thes editors support multiple programming languages. Thus no need to
+switch between programmes. I write my Python, Matlab, Javascript code
+and documentation in Markdown or Latex in Atom. Saves so much time!
+
+\paragraph{All in One Solutions}\label{all-in-one-solutions}
+
+You can also use an all in one solution that provides you with an
+editor, code interpreter (the thing that allows the computer to read and
+execute python code) and file managers. A bit like the Matlab software
+or R-Studio, which you might have heard of, but for python:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Spyder (free) https://www.spyder-ide.org/
+\item
+  Pycharm (free basic and commercial pro version)
+  https://www.jetbrains.com/pycharm/
+\end{enumerate}
+
+    \paragraph{Coding Challenges}\label{coding-challenges}
+
+These challenges are a great way to test your understanding of computer
+science concepts and improve your logical thinking / problem solving
+skills. Also good to know: Almost every company uses these to assess
+candidates for software engineering / data science positions 1.
+Hackerrank https://www.hackerrank.com/ 2. Leetcode https://leetcode.com
+
+    \paragraph{Python for Psychologists}\label{python-for-psychologists}
+
+You can use python to run your own experiments, analyse behavioural,
+eye-tracking and neuroimaging data and to make beautiful visualisations
+of your results. Below are a few pointers
+https://www.marsja.se/best-python-libraries-psychology/
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}

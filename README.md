@@ -10,5 +10,6 @@ This class might be of particular interest to those who are interested in doing 
 No prerequisites expected. Resources for those who are interested in learning more will be provided in the interactive worksheet in class."
 
 
-
+### How to get started
+Click on the "launch in binder" button below. This will open a new website where you'll find further instructions. 
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/TimoFlesch/intro2python/master) [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/TimoFlesch/intro2python/blob/master/intro_to_python_students.ipynb)
