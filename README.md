@@ -11,7 +11,9 @@ No prerequisites expected. Resources for those who are interested in learning mo
 
 
 ### How to get started
-Click on the "launch in binder" button below. This will open a new website where you'll find further instructions.  
+
+1. Open "slides.pdf"
+2. Click on the "launch in binder" button below when you've read through the slides.
 
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/TimoFlesch/intro2python/master)
 
