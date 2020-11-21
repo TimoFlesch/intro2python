@@ -1,7 +1,7 @@
 # A brief (2h) introduction to programming in Python for absolute beginners, 2020 Edition
 
-v1.0 (2019): The course was developed and delivered by Timo Flesch and Mirta Stantic.    
-v2.0 (2020): The course was refined and further developed by Timo Flesch and Jelka Stojanov.
+v1.0 (2019): The course was initially developed and delivered by Timo Flesch and Mirta Stantic.    
+v2.0 (2020): The course was refined and delivered by Timo Flesch and Jelka Stojanov.
 
 A brief intro to Python, designed for 2nd year undergraduate students in Experimental Psychology at the University of Oxford.  
 **Blurb (draft):**   
