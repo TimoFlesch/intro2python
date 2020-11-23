@@ -1,20 +1,28 @@
-# A brief (2h) introduction to programming in Python for absolute beginners
-The course was developed and delivered by Mirta Stantic and Timo Flesch.    
+# A brief (2h) introduction to programming in Python for absolute beginners, 2020 Edition
 
-A brief intro to Python, designed for 2nd year undergraduate students in Experimental Psychology and Biomedical Sciences at the University of Oxford.
+v1.0 (2019): The course was initially developed and delivered by Timo Flesch and Mirta Stantic.    
+v2.0 (2020): The course was refined and delivered by Timo Flesch and Jelka Stojanov.
 
-"This course will introduce you to Python programming and will assume no previous knowledge of other programming languages. We’ll skip the basics of setting up the programming environment to teach you how to assign values to variables, manipulate data formats and data sets, use basic scientific visualizations and basic statistics. We’ll introduce you to loops, conditionals and functions and discuss some of the most important libraries in the scientist’s toolkit.  
+A brief intro to Python, a powerful general-purpose programming language, designed for second-year undergraduate students in Experimental Psychology and Biomedical Sciences at the University of Oxford.
 
-This class might be of particular interest to those who are interested in doing computational work in the future – whether academic or in industry. Python is the most widely used programming language amongst data scientists in the industry but also an incredibly powerful tool to have at your disposal should you choose to continue your academic career.  
+In this course, you will learn:
 
-No prerequisites expected. Resources for those who are interested in learning more will be provided in the interactive worksheet in class."
+-	how to assign values to variables and perform different mathematical operations;
+-	how to manipulate data formats and data sets;
+-	how to use loops, functions and methods (you will not only use existing functions in Python, but also create your own).
 
+We will also introduce you to some of the most important libraries in the scientist’s toolkit.
 
-### How to get started
+Finally, you will apply the knowledge you have gained to run a few simple statistical analyses (repeated-measures ANOVA, linear regression) and to visualize the results.
+
+This course does **NOT** assume any previous knowledge of Python or any other programming language.
+Resources for those who are interested in learning more will be provided in the interactive worksheet in class.
+
+### How to get started?
 
 1. Open "slides.pdf"
-2. Click on the "launch in binder" button below when you've read through the slides.
+2. Click on the "launch in binder" button below when you have read through the slides.
 
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/TimoFlesch/intro2python/master)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/TimoFlesch/intro2python/2020)
 
 <!-- [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/TimoFlesch/intro2python/blob/master/intro_to_python_students.ipynb) -->
