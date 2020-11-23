@@ -13,7 +13,7 @@ In this course, you will learn:
 
 We will also introduce you to some of the most important libraries in the scientist’s toolkit.
 
-Finally, you will apply the knowledge you have gained to run a few simple statistical analyses (repeated-measures ANOVA, linear regression) on a real dataset and to visualize the results.
+Finally, you will apply the knowledge you have gained to run a few simple statistical analyses (repeated-measures ANOVA, linear regression) and to visualize the results.
 
 This course does **NOT** assume any previous knowledge of Python or any other programming language.
 Resources for those who are interested in learning more will be provided in the interactive worksheet in class.
@@ -21,7 +21,7 @@ Resources for those who are interested in learning more will be provided in the 
 ### How to get started?
 
 1. Open "slides.pdf"
-2. Click on the "launch in binder" button below when you've read through the slides.
+2. Click on the "launch in binder" button below when you have read through the slides.
 
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/TimoFlesch/intro2python/2020)
 
