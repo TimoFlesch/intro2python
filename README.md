@@ -25,6 +25,6 @@ Resources for those who are interested in learning more will be provided in the 
 1. Open "slides_2021.pdf"
 2. Click on the "launch in binder" button below when you have read through the slides.
 
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/TimoFlesch/intro2python/2020)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/jelkastojanov/intro2python/master)
 
 <!-- [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/TimoFlesch/intro2python/blob/master/intro_to_python_students.ipynb) -->
