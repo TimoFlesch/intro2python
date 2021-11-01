@@ -161,20 +161,11 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 1,
+   "execution_count": null,
    "metadata": {
     "id": "rn9FI0Y6mz2R"
    },
-   "outputs": [
-    {
-     "ename": "SyntaxError",
-     "evalue": "invalid syntax (<ipython-input-1-417cc9bc83bf>, line 2)",
-     "output_type": "error",
-     "traceback": [
-      "\u001b[0;36m  File \u001b[0;32m\"<ipython-input-1-417cc9bc83bf>\"\u001b[0;36m, line \u001b[0;32m2\u001b[0m\n\u001b[0;31m    ^my_var = 12\u001b[0m\n\u001b[0m    ^\u001b[0m\n\u001b[0;31mSyntaxError\u001b[0m\u001b[0;31m:\u001b[0m invalid syntax\n"
-     ]
-    }
-   ],
+   "outputs": [],
    "source": [
     "# See what happens when you try to give your variable an invalid name.\n",
     "^my_var = 12"
@@ -469,11 +460,7 @@
     "2. Calculate the square root of 144 and save it to a variable 'sqroot144'\n",
     "3. Define a string variable that will contain your name and check if you have letter 'i' in your name\n",
     "4. Assign any 3 numbers (between 1 and 100) to 3 different variables. After doing that, add up your 3 variables and print whether their sum is between 100 and 120\n",
-    "5. Check the type of each of the variables you defined by using the function type()\n",
-    "\n",
-    "**Hint**: You can use a built-in function (sqrt(x)) to calculate the square root of a number.\n",
-    "\n",
-    "\n"
+    "5. Check the type of each of the variables you defined by using the function type()"
    ]
   },
   {
@@ -644,9 +631,7 @@
     "id": "yQMQq9RRLduW"
    },
    "source": [
-    "Very often you'll find that you want to check multiple conditions before doing something with your variables. You can do this by using logical connectors such as 'and' or 'or'. \n",
-    "\n",
-    "[Link to a good starting point on Boolean operators in Python ](https://https://docs.python.org/2.0/ref/lambda.html)"
+    "Very often you'll find that you want to check multiple conditions before doing something with your variables. You can do this by using logical connectors such as 'and' or 'or'. "
    ]
   },
   {
@@ -700,7 +685,7 @@
     "modules = [\"cognitive\", \"developmental\", \"neuro\", \"clinical\", \"social\", \"computational\"]\n",
     "comparisonVariable = \"introductory\"\n",
     "\n",
-    "# Type your code below:\n"
+    "# Type your code below:"
    ]
   },
   {
@@ -899,8 +884,7 @@
     "#let's write a wrapper!\n",
     "def check_item_parity(arr):\n",
     "    for ii in arr:\n",
-    "        print(return_parity(ii))\n",
-    "  "
+    "        print(return_parity(ii))"
    ]
   },
   {
@@ -1065,7 +1049,7 @@
    "source": [
     "numbers = [2,5,8,7,1,4,4,9]\n",
     "\n",
-    "# Type your code below:\n"
+    "# Type your code below:"
    ]
   },
   {
@@ -1235,47 +1219,7 @@
    "source": [
     "sentence = 'Michaelmas term starts in October.'\n",
     "\n",
-    "# Type your code below:\n"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": null,
-   "metadata": {
-    "id": "tft-4ClLtGAE"
-   },
-   "outputs": [],
-   "source": [
-    "# Solution (Task 1):\n",
-    "def UpperVowelsLowerConsonants(string):\n",
-    "  newString = []\n",
-    "  vowels = ['a','e','i','o','u', 'A', 'E', 'I', 'O', 'U']\n",
-    "  for letter in string:\n",
-    "    if letter in vowels:\n",
-    "      letter = letter.upper()\n",
-    "      newString.append(letter)\n",
-    "    else:\n",
-    "      letter = letter.lower()\n",
-    "      newString.append(letter)\n",
-    "  newString = ''.join(newString)\n",
-    "  return(newString)\n",
-    "\n",
-    "UpperVowelsLowerConsonants(sentence)"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": null,
-   "metadata": {
-    "id": "qjMdZoQttHJb"
-   },
-   "outputs": [],
-   "source": [
-    "# Solution (Task 2):\n",
-    "sentenceTT = sentence.replace('Michaelmas', 'Trinity')\n",
-    "sentenceTT = sentenceTT.replace('October', 'April')\n",
-    "\n",
-    "print(sentenceTT)"
+    "# Type your code below:"
    ]
   },
   {
@@ -1283,7 +1227,8 @@
    "metadata": {},
    "source": [
     "Congratulations, you made it to the end of part 1!\n",
-    "Let's now continue with part 2, where we'll show you how to use packages to enhance the functionality of python, and how to use Python like a scientist!"
+    "\n",
+    "Let's now continue with part 2, where we'll show you how to use packages to enhance the functionality of Python, and how to use Python like a scientist!"
    ]
   }
  ],
