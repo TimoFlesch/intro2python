@@ -22,7 +22,7 @@ Resources for those who are interested in learning more will be provided in the 
 
 ### How to get started?
 
-1. Open "slides.pdf"
+1. Open "slides_2021.pdf"
 2. Click on the "launch in binder" button below when you have read through the slides.
 
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/TimoFlesch/intro2python/2020)
