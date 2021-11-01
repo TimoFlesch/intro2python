@@ -5,8 +5,8 @@
 
 #### **How to install Python**
 1. Just Python
-https://www.codecademy.com/articles/install-python
-2. The Jupyter Notebook (the thing you've been working with today)
+https://www.python.org/downloads/
+2. The Jupyter Notebook (the thing you are working with today)
 https://jupyter.org/install
 3. Anaconda (a collection of useful packages and other software for data scientists)
 https://www.anaconda.com/distribution/
